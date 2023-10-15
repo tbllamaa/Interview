@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 - Data Visualization 2</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <script src="vega1.js"></script>
+  <script src="vega2.js"></script>
+  <script src="vega3.js"></script>
+  <script src="vega4.js"></script>
+  <script src="vega5.js"></script>
+  <script src="vega6.js"></script>
+
+    
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:wght@400;700&family=Roboto+Serif:opsz@8..144&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+
+</head>
+
+<body>
+    <!-- Title -->
+    <div class="page">
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-1">
+                    <h1 style="text-align: center;"><span style="color: #555555;">-------  Natural Disasters  -------</span></h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-1">
+                </div>
+
+                <div class="pure-u-1-1">
+                    <p>
+                        We will be looking at some of the main Natural disaster occurrences around the world. This includes <span style="color: darkred; font-weight: bold;">Volcanoes</span>, <span style="color: darkslateblue; font-weight: bold;">Tsunamis</span>, and <span style="color: darkslategray; font-weight: bold;">Earthquakes</span> for the sake of this visualization. We will be utilizing maps and some other interactive charts for the same (more general info to be added later on...).
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- End Title -->
+
+        <!-- Dot Map -->
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-1">
+                    <h2><span style="color: darkred;">Volcanoes</span></h2>
+                    <h3>Volcano eruptions between 2010-2018</h3>
+                </div>
+            </div>
+            <div class="pure-u-1-1">
+                <style>
+                    #map1 {
+                        display: block;
+                        margin: auto;
+                    }
+                </style>
+                <div id="map1"></div>
+            </div>
+            <div class="pure-u-1-1">
+            </div>
+            <div class="pure-u-1-2" style="max-width: 350px; margin-top: 10px;">
+                <p>
+                    <b>VEI (Volcanic Explosivity Index)</b> quantifies eruption power from 0 (non-explosive) to 8 (catastrophic) based on ejected material volume, aiding eruption classification and hazard assessment.
+                </p>
+            </div>
+            <div class="pure-u-1-2" style="margin-left: 20px; margin-top: 10px;">
+                <p>
+                    For <b>elevation (in m)</b>, volcanic eruptions propel lava to varying heights influenced by eruption factors like magma composition and gas presence, aiding eruption analysis.
+                </p>
+            </div>
+        </div>
+        <h3><span style="color: #340034;">Different Types of Volcanoes</span></h3>
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-2">
+                    
+                    <div class="pure-u-1-2">
+                        <div id="donut1"></div>
+                    </div>
+                </div>
+                <div class="pure-u-1-2">
+                    <div id="stacked1"></div>
+                </div>
+                <div class="pure-u-1-1">
+                    <p>
+                        Different Types of Volcanoes:<br>
+                        <b>Stratovolcano</b>: Also known as composite volcanoes, these are tall, steep-sided mountains formed by alternating layers of lava flows, ash, and volcanic rocks. They can be highly explosive.<br>
+                        <b>Shield Volcano</b>: These are broad, gently sloping volcanoes created by numerous lava flows with low viscosity. They often have non-explosive eruptions.<br>
+                        <b>Cinder Cone</b>: Small, steep-sided volcanoes formed by ejected lava fragments during explosive eruptions. They have simple, conical shapes.<br>
+                        <b>Lava Dome</b>: These are created by the slow extrusion of highly viscous lava. They result in bulbous, dome-like features on a volcano.<br>
+                        <b>Submarine Volcano</b>: Situated under the ocean, these volcanoes erupt beneath the water's surface, potentially forming new islands when eruptions breach the sea.<br>
+                        <b>Super Volcano</b>: These are capable of catastrophic eruptions, ejecting enormous volumes of material. Yellowstone Caldera is an example.<br>
+                        <b>Complex Volcano</b>: A combination of features from different volcano types, resulting in complex, irregular shapes.<br>
+                        <b>Fissure Volcano</b>: Eruptions occur along elongated cracks or fissures in the Earth's crust, often producing extensive lava plateaus.<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional content can be added here -->
+
+
+        <!-- Tsunamis Map -->
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-1">
+                    <h2><span style="color: darkslateblue;">Tsunamis</span></h2>
+                    <h3>Tsunamis between 2010-2018</h3>
+                </div>
+            </div>
+            <div class="pure-u-1-1">
+                <style>
+                    #map2 {
+                        display: block;
+                        margin: auto;
+                    }
+                </style>
+                <div id="map2"></div>
+            </div>
+            <div class="pure-u-1-1">
+            </div>
+            <div class="pure-u-1-2" style="max-width: 350px; margin-top: 10px;">
+                <p>
+                    <b>Maximum water height during a tsunami, or tsunami wave height</b> measures the highest seawater point reached during a tsunami event, crucial for effective warning systems and coastal safety planning              </p>
+            </div>
+            <div class="pure-u-1-2" style="margin-left: 20px; margin-top: 10px;">
+                <p>
+                <b>Earthquake magnitude,</b>, often measured on the Richter scale, directly influences tsunami generation. Greater magnitudes result in more potent undersea disturbances and larger, potentially devastating tsunamis               </p>
+            </div>
+        </div>
+        <!-- Earthquake Map -->
+        <div class="pure-g">
+            <div class="block">
+                <div class="pure-u-1-1">
+                    <h2><span style="color: darkgreen;">Earthquakes</span></h2>
+                    <h3>Earthquakes between 2010-2018</h3>
+                </div>
+            </div>
+            <div class="pure-u-1-1">
+                <style>
+                    #map3 {
+                        display: block;
+                        margin: auto;
+                    }
+                </style>
+                <div id="map3"></div>
+            </div>
+            <div class="pure-u-1-1">
+            </div>
+            <div class="pure-u-1-2" style="max-width: 350px; margin-top: 10px;">
+                <p>
+                    <b>The focal depth of an earthquake, known as hypocenter depth</b> indicates where the quake originates within the Earth's crust.            </div>
+            <div class="pure-u-1-2" style="margin-left: 20px; margin-top: 10px;">
+                <p>
+                <b>Earthquake magnitude</b>is a measure of seismic energy released during a quake. The Richter scale and moment magnitude scale quantify the earthquake's size and potential for damage. </div>
+        </div>
+        
+                
+            </div>
+        </div>
+                
+            </div>
+        </div>
+        
+
+
+    </div>
+
+
+
+    <!-- Include your JavaScript and other scripts here -->
+</body>
+
+</html>
+
+     

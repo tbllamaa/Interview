@@ -1,0 +1,166 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+    "url":
+    "volcano_data_2010-2018.csv"
+    },
+    "vconcat": [
+    {
+    "width": "container",
+    "height": 400,
+    "title": "Volcano Eruptions 2010-2018",
+    "projection": {"type": "equalEarth"},
+    "layer": [
+    {
+    "data": {
+    "url":
+    "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+    "format": {
+    "type": "topojson",
+    "feature": "ne_110m_admin_0_countries"
+    }
+    },
+    "mark": {"type": "geoshape", "fill": "#8FBC8F", "stroke": "#555555"}
+    },
+    {
+    "data": {
+    "url":
+    "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+    "format": {"type": "topojson", "feature": "oceans"}
+    },
+    "mark": {"type": "geoshape", "fill":  "#778899"}
+    },
+    {
+    "data": {
+    "url":
+    "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+
+   "format": {"type": "topojson", "feature":
+"ne_110m_graticules_30"}
+},
+"mark": {"type": "geoshape", "fill": null, "stroke":
+"lightgray"}
+},
+{
+"transform": [{"filter": {"param": "time_brush"}}],
+"encoding": {
+"longitude": {"field": "Longitude", "type":
+"quantitative"},
+"latitude": {"field": "Latitude", "type":
+"quantitative"},
+"color": {
+"field": "Elevation",
+"type": "quantitative",
+"title": "Elevation (in m)",
+"scale": {
+"type": "threshold",
+"domain": [250,6000],
+"range": ["#fdbe85", "#fd8d3c", "#e6550d",
+"#bd0026", "#7f0000"]
+}
+},
+"tooltip": [
+    { "field": "Elevation", "type": "quantitative", "format": ",","title":"Elevation (in m)" },
+    {
+        "field": "Location",
+        "type": "nominal"
+      },
+
+    { "field": "Country", "type": "nominal" },
+    
+    { "field": "Year", "type": "ordinal" },
+    
+    
+    { "field": "VEI", "type": "quantitative", "format": "," }
+  ]
+},
+"layer": [
+{"mark": {"type": "circle", "opacity": 0.4, "size":
+15}},
+{
+"transform": [
+{
+"window": [{"op": "rank", "as": "ranking"}],
+"sort": [{"field": "Elevation", "order":
+"descending"}]
+},
+{"filter": "datum.ranking == 1"},
+{
+    "calculate": "'Highest eruptions of the selected period: ' + datum['Elevation']",
+    "as": "text_annotation_raw"
+    },
+    {
+    "calculate": "split(datum.text_annotation_raw,';')",
+    "as": "text_annotation"
+    }
+    ],
+    "mark": {
+    "type": "text",
+    "align": "right",
+    "dx": -8,
+    "dy": -8,
+    "baseline": "middle",
+    "fontStyle": "italic"
+    },
+    "encoding": {"text": {"field": "text_annotation"}}
+    }
+    ]
+    }
+    ]
+    },
+    {
+    "width": "container",
+    "height": 60,
+    "mark": "line",
+    "title": "Use this line chart to filter out the data basedon time",
+    "params": [
+    {
+    "name": "time_brush",
+    "select": {"type": "interval", "encodings": ["x"]}
+    }
+    ],
+    "encoding": {
+    "x": {
+    "field": "Year",
+    "timeUnit": "year",
+    "axis": {"title": "", "format": "%Y"}
+    },
+    "y": {
+        "aggregate": "count",
+        "axis": {"tickCount": 3, "grid": false},
+        "title": "Count"
+        }
+        }
+        },
+        {
+        "width": "container",
+        "transform": [
+        {
+        "bin": {"step": 0.5, "extent": [5, 7]},
+        "field": "Elevation",
+        "as": "magnitude"
+        }
+        ],
+        "mark": "area",
+        "encoding": {
+        "x": {
+        "field": "Year",
+        "timeUnit": "year",
+        "scale": {"domain": {"param": "time_brush"}},
+        "axis": {"title": "", "tickCount": 5, "grid": false}
+        },
+        "y": {"aggregate": "count", "title": "Count ofEarthquakes"},
+        "color": {
+        "field": "Elevation",
+        "scale": {
+        "range": ["#fdbe85", "#fd8d3c", "#e6550d",
+        "#bd0026", "#7f0000"]
+        },
+        "legend": null
+        }
+        }
+        }
+        ],
+        "config": {"title": {"font": "sans-serif", "fontSize": 14}}
+        }
+         
